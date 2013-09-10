@@ -1,8 +1,98 @@
 <html>
 <head>
 	<script src="phonegap.js"></script>
+	<script src="jquery-1.10.2.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function()
+		{
+			// Attach tap handler to each of the section dividors	
+			$(".section-header-active,.section-header-inactive").each(function()
+			{
+				console.log($(this));
+				$(this).click(function()
+				{
+					toggleSection(this);
+				});
+			});
+		});
+
+		function toggleSection(obj)
+		{
+			// Get section id
+			sectionId = $(obj).attr("id");
+
+			// Get current state
+			if ($(obj).attr("class") == "section-header-inactive")
+			{
+				// Expand section content if necessary
+				$(obj).children(".section-content").css("display", "block");
+
+				// Replace section header background with active background
+				$(obj).attr("class", "section-header-active");
+			}
+			else
+			{
+				// Colapse section content if necessary
+				$(obj).children(".section-content").css("display", "none");
+
+				// Replace section header background with active background
+				$(obj).attr("class", "section-header-inactive");
+			}
+		}
+	</script>
+	<style>
+		.section-header-inactive
+		{
+			background-image: url("images/section-background-orange-inactive.png");
+			background-repeat: no-repeat;
+			height: 97px;
+		}
+
+		.section-header-active
+		{
+			background-image: url("images/section-background-orange-active.png");
+			background-repeat: no-repeat;
+			height: 97px;
+		}
+
+		.section-icon
+		{
+			margin-left: 10px;
+			margin-top: 6px;
+		}
+
+		.section-copy
+		{
+			color: white;
+			font-size: 40pt;
+			line-height: 97px;
+			vertical-align: top;
+			display: inline-block;
+		}
+
+		.section-content
+		{
+			display: none;
+			margin-top: 10px;
+	
+		}
+	</style>
 </head>
 <body>
+	<div id="header"><img src="images/logo.png" /></div>
+
+	<!-- CHW Overview -->
+	<div id="chw-overview" class="section-header-inactive" />
+		<img id="chw-overview-icon" class="section-icon" src="images/chw-overview-icon.png" />
+		<span id="chw-overview-copy" class="section-copy">CHW Overview</span>
+		<div id="chw-overview-content" class="section-content">
+			<iframe width="560" height="315" src="http://www.youtube.com/embed/qvlTOhCmxvY" frameborder="0" allowfullscreen></iframe>
+		</div>
+	</div>
+	<!-- END CHW Overview -->
+
+
+<!--
 	<div><iframe width="560" height="315" src="http://www.youtube.com/embed/qvlTOhCmxvY" frameborder="0" allowfullscreen></iframe></div>
 	<div><iframe width="560" height="315" src="http://www.youtube.com/embed/RqRuSwZey_U" frameborder="0" allowfullscreen></iframe></div>
 	<div><iframe width="560" height="315" src="http://www.youtube.com/embed/RqRuSwZey_U" frameborder="0" allowfullscreen></iframe></div>
@@ -10,5 +100,6 @@
 	<div><iframe width="560" height="315" src="http://www.youtube.com/embed/RqRuSwZey_U" frameborder="0" allowfullscreen></iframe></div>
 	<div><iframe width="560" height="315" src="http://www.youtube.com/embed/RqRuSwZey_U" frameborder="0" allowfullscreen></iframe></div>
 	<div><iframe width="560" height="315" src="http://www.youtube.com/embed/RqRuSwZey_U" frameborder="0" allowfullscreen></iframe></div>
+-->
 </body>
 </html>
