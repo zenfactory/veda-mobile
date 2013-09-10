@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 <head>
 	<script src="phonegap.js"></script>
@@ -8,7 +9,6 @@
 			// Attach tap handler to each of the section dividors	
 			$(".section-header-active,.section-header-inactive").each(function()
 			{
-				console.log($(this));
 				$(this).click(function()
 				{
 					toggleSection(this);
@@ -25,7 +25,8 @@
 			if ($(obj).attr("class") == "section-header-inactive")
 			{
 				// Expand section content if necessary
-				$(obj).children(".section-content").css("display", "block");
+				//$(obj).children(".section-content").css("display", "block");
+				$(obj).next(".section-content").css("display", "block");
 
 				// Replace section header background with active background
 				$(obj).attr("class", "section-header-active");
@@ -33,7 +34,8 @@
 			else
 			{
 				// Colapse section content if necessary
-				$(obj).children(".section-content").css("display", "none");
+				//$(obj).children(".section-content").css("display", "none");
+				$(obj).next(".section-content").css("display", "none");
 
 				// Replace section header background with active background
 				$(obj).attr("class", "section-header-inactive");
@@ -46,6 +48,7 @@
 			background-image: url("images/section-background-orange-inactive.png");
 			background-repeat: no-repeat;
 			height: 97px;
+			width: 599px;
 		}
 
 		.section-header-active
@@ -53,18 +56,21 @@
 			background-image: url("images/section-background-orange-active.png");
 			background-repeat: no-repeat;
 			height: 97px;
+			width: 599px;
 		}
 
 		.section-icon
 		{
 			margin-left: 10px;
 			margin-top: 6px;
+			height: 86px;
+			width: 86px;
 		}
 
 		.section-copy
 		{
 			color: white;
-			font-size: 40pt;
+			font-size: 30pt;
 			line-height: 97px;
 			vertical-align: top;
 			display: inline-block;
@@ -74,7 +80,10 @@
 		{
 			display: none;
 			margin-top: 10px;
-	
+		}
+
+		iframe
+		{
 		}
 	</style>
 </head>
@@ -85,11 +94,141 @@
 	<div id="chw-overview" class="section-header-inactive" />
 		<img id="chw-overview-icon" class="section-icon" src="images/chw-overview-icon.png" />
 		<span id="chw-overview-copy" class="section-copy">CHW Overview</span>
-		<div id="chw-overview-content" class="section-content">
-			<iframe width="560" height="315" src="http://www.youtube.com/embed/qvlTOhCmxvY" frameborder="0" allowfullscreen></iframe>
-		</div>
+	</div>
+	<div id="chw-overview-content" class="section-content">
+		<iframe width="560" height="315" src="http://www.youtube.com/embed/qvlTOhCmxvY" frameborder="0" allowfullscreen></iframe>
 	</div>
 	<!-- END CHW Overview -->
+
+	<!-- Cough -->
+	<div id="cough" class="section-header-inactive" />
+		<img id="cough-icon" class="section-icon" src="images/cough-icon.png" />
+		<span id="cough-copy" class="section-copy">Cough</span>
+	</div>
+	<div id="cough-content" class="section-content">
+		<iframe width="560" height="315" src="http://www.youtube.com/embed/qvlTOhCmxvY" frameborder="0" allowfullscreen></iframe>
+	</div>
+	<!-- END Cough -->
+
+	<!-- Diarrhea -->
+	<div id="diarrhea" class="section-header-inactive" />
+		<img id="diarrhea-icon" class="section-icon" src="images/diarrhea-icon.png" />
+		<span id="diarrhea-copy" class="section-copy">Diarrhea</span>
+	</div>
+	<div id="diarrhea-content" class="section-content">
+		<iframe width="560" height="315" src="http://www.youtube.com/embed/qvlTOhCmxvY" frameborder="0" allowfullscreen></iframe>
+	</div>
+	<!-- END Diarrhea -->
+
+	<!-- Fever -->
+	<div id="fever" class="section-header-inactive" />
+		<img id="fever-icon" class="section-icon" src="images/fever-icon.png" />
+		<span id="fever-copy" class="section-copy">Fever</span>
+	</div>
+	<div id="fever-content" class="section-content">
+		<iframe width="560" height="315" src="http://www.youtube.com/embed/qvlTOhCmxvY" frameborder="0" allowfullscreen></iframe>
+	</div>
+	<!-- END Fever -->
+
+	<!-- Bednets -->
+	<div id="bednets" class="section-header-inactive" />
+		<img id="bednets-icon" class="section-icon" src="images/bednets-icon.png" />
+		<span id="bednets-copy" class="section-copy">Bednets</span>
+	</div>
+	<div id="bednets-content" class="section-content">
+		<iframe width="560" height="315" src="http://www.youtube.com/embed/qvlTOhCmxvY" frameborder="0" allowfullscreen></iframe>
+	</div>
+	<!-- END Bednets -->
+
+	<!-- Vaccinations -->
+	<div id="vaccinations" class="section-header-inactive" />
+		<img id="vaccinations-icon" class="section-icon" src="images/vaccinations-icon.png" />
+		<span id="vaccinations-copy" class="section-copy">Vaccinations</span>
+	</div>
+	<div id="vaccinations-content" class="section-content">
+		<iframe width="560" height="315" src="http://www.youtube.com/embed/qvlTOhCmxvY" frameborder="0" allowfullscreen></iframe>
+	</div>
+	<!-- END Vaccinations -->
+
+	<!-- Bednets -->
+	<div id="bednets" class="section-header-inactive" />
+		<img id="bednets-icon" class="section-icon" src="images/bednets-icon.png" />
+		<span id="bednets-copy" class="section-copy">Bednets</span>
+	</div>
+	<div id="bednets-content" class="section-content">
+		<iframe width="560" height="315" src="http://www.youtube.com/embed/qvlTOhCmxvY" frameborder="0" allowfullscreen></iframe>
+	</div>
+	<!-- END Bednets -->
+
+	<!-- Hygine and Sanitation -->
+	<div id="hygiene-sanitation" class="section-header-inactive" />
+		<img id="hygiene-sanitation-icon" class="section-icon" src="images/hygiene-sanitation-icon.png" />
+		<span id="hygiene-sanitation-copy" class="section-copy">Hygine and Sanitation</span>
+	</div>
+	<div id="hygiene-sanitation-content" class="section-content">
+		<iframe width="560" height="315" src="http://www.youtube.com/embed/qvlTOhCmxvY" frameborder="0" allowfullscreen></iframe>
+	</div>
+	<!-- END Hygine and Sanitation -->
+
+	<!-- Nutrition -->
+	<div id="nutrition" class="section-header-inactive" />
+		<img id="nutrition-icon" class="section-icon" src="images/nutrition-icon.png" />
+		<span id="nutrition-copy" class="section-copy">Nutrition</span>
+	</div>
+	<div id="nutrition-content" class="section-content">
+		<iframe width="560" height="315" src="http://www.youtube.com/embed/qvlTOhCmxvY" frameborder="0" allowfullscreen></iframe>
+	</div>
+	<!-- END Nutrition -->
+
+	<!-- Water Treatment -->
+	<div id="water-treatment" class="section-header-inactive" />
+		<img id="water-treatment-icon" class="section-icon" src="images/water-treatment-icon.png" />
+		<span id="water-treatment-copy" class="section-copy">Water Treatment</span>
+	</div>
+	<div id="water-treatment-content" class="section-content">
+		<iframe width="560" height="315" src="http://www.youtube.com/embed/qvlTOhCmxvY" frameborder="0" allowfullscreen></iframe>
+	</div>
+	<!-- END Water Treatment -->
+
+	<!-- Safe Food Handling -->
+	<div id="safe-food-handling" class="section-header-inactive" />
+		<img id="safe-food-handling-icon" class="section-icon" src="images/safe-food-handling-icon.png" />
+		<span id="safe-food-handling-copy" class="section-copy">Safe Food Handling</span>
+	</div>
+	<div id="safe-food-handling-content" class="section-content">
+		<iframe width="560" height="315" src="http://www.youtube.com/embed/qvlTOhCmxvY" frameborder="0" allowfullscreen></iframe>
+	</div>
+	<!-- END Safe Food Handling -->
+
+	<!-- Antenatal Care -->
+	<div id="antenatal-care" class="section-header-inactive" />
+		<img id="antenatal-care-icon" class="section-icon" src="images/antenatal-care-icon.png" />
+		<span id="antenatal-care-copy" class="section-copy">Antenatal Care</span>
+	</div>
+	<div id="antenatal-care-content" class="section-content">
+		<iframe width="560" height="315" src="http://www.youtube.com/embed/qvlTOhCmxvY" frameborder="0" allowfullscreen></iframe>
+	</div>
+	<!-- END Antenatal Care -->
+
+	<!-- Newborn Care -->
+	<div id="newborn-care" class="section-header-inactive" />
+		<img id="newborn-care-icon" class="section-icon" src="images/newborn-care-icon.png" />
+		<span id="newborn-care-copy" class="section-copy">Newborn Care</span>
+	</div>
+	<div id="newborn-care-content" class="section-content">
+		<iframe width="560" height="315" src="http://www.youtube.com/embed/qvlTOhCmxvY" frameborder="0" allowfullscreen></iframe>
+	</div>
+	<!-- END Newborn Care -->
+
+	<!-- Family Planning -->
+	<div id="family-planning" class="section-header-inactive" />
+		<img id="family-planning-icon" class="section-icon" src="images/family-planning-icon.png" />
+		<span id="family-planning-copy" class="section-copy">Family Planning</span>
+	</div>
+	<div id="family-planning-content" class="section-content">
+		<iframe width="560" height="315" src="http://www.youtube.com/embed/qvlTOhCmxvY" frameborder="0" allowfullscreen></iframe>
+	</div>
+	<!-- END Family Planning -->
 
 
 <!--
