@@ -1,5 +1,7 @@
+// Debug Global 
+debug = true;
+
 // Function to make a request to the URI specified in parameter 1
-//function apiRequest(uri, method, dataObj, successCallBack, failureCallback)
 function apiRequest(uri, method, dataObj)
 {
 
@@ -14,5 +16,9 @@ function apiRequest(uri, method, dataObj)
 		url: "proxy.php/"+uri,
 	});
 
-	console.log(responseObj);
+	// Debug
+	if (debug)
+	{
+		console.log(responseObj);
+	}
 }
