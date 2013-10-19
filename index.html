@@ -15,6 +15,10 @@
 					toggleSection(this);
 				});
 			});
+
+			dataObj = new Object();
+			dataObj.requestData = "new request data";
+			response = apiRequest("test", "GET", dataObj);
 		});
 
 		function toggleSection(obj)
