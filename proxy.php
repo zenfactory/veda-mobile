@@ -3,26 +3,28 @@
 #################################
 # Includes / Defines
 #################################
+DEFINE("API_HOST", "https://api.vedaproject.org");
 require_once("Api.php");
-DEFINE("API_HOST", "api.vedaproject.org");
 
 #################################
 # Application Logic
 #################################
 
 # Sanity
-if (isset($_REQUEST) && isset($_REQUEST['requestObj']) && !empty($_REQUEST['requestObj']))
+if (isset($_REQUEST) && isset($_REQUEST['uri']) && !empty($_REQUEST['uri']) && isset($_REQUEST['method']) && !empty($_REQUEST['method']))
 {
-	# Extract Request Object from PHP's global $_REQUEST variable
-	$requestObj = $_REQUEST['requestObj'];
-
-	# Sanity
-	if (isset($requestObj->uri) && !empty($requestObj->uri))
-	{
-	}
-
 	# Instantiate new API interface object
-	$api = new API();
+	$api = new Api();
 
-	$api->setUri
+	# Set data type 
+	$api->setDataType("json");
+
+	# Set data type 
+	$api->setUri($_REQUEST['uri']);
+
+	# Make request to API Server
+	$response = $api->makeRequest();
+
+	# Dump response to client 
+	exit(json_encode($response));
 }

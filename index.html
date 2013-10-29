@@ -3,11 +3,12 @@
 <head>
 	<script src="phonegap.js"></script>
 	<script src="jquery-1.10.2.min.js"></script>
+	<!-- <script src="jquery.mobile-1.3.2.min.js"></script> -->
 	<script src="api.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function()
 		{
-			// Attach tap handler to each of the section dividors	
+			// Attach tap and click handler to each of the section dividors	
 			$(".section-header-active,.section-header-inactive").each(function()
 			{
 				$(this).click(function()
@@ -16,9 +17,11 @@
 				});
 			});
 
-			dataObj = new Object();
-			dataObj.requestData = "new request data";
-			response = apiRequest("test", "GET", dataObj);
+			var dataObj = new Object();
+			dataObj.uri = "/data/material/CHW_Training/CHW_Training/CHW_Overview/CHW_Overview/CHW_Overview/quiz";
+			dataObj.method = "GET";
+			response = apiRequest(dataObj);
+			console.log(response);
 		});
 
 		function toggleSection(obj)
@@ -30,7 +33,6 @@
 			if ($(obj).attr("class") == "section-header-inactive")
 			{
 				// Expand section content if necessary
-				//$(obj).children(".section-content").css("display", "block");
 				$(obj).next(".section-content").css("display", "block");
 
 				// Replace section header background with active background
@@ -39,7 +41,6 @@
 			else
 			{
 				// Colapse section content if necessary
-				//$(obj).children(".section-content").css("display", "none");
 				$(obj).next(".section-content").css("display", "none");
 
 				// Replace section header background with active background
@@ -54,6 +55,7 @@
 			background-repeat: no-repeat;
 			height: 97px;
 			width: 599px;
+			/*width: 100%;*/
 		}
 
 		.section-header-active
@@ -62,6 +64,7 @@
 			background-repeat: no-repeat;
 			height: 97px;
 			width: 599px;
+			/*width: 100%;*/
 		}
 
 		.section-icon
@@ -90,6 +93,29 @@
 		iframe
 		{
 		}
+
+		ul
+		{
+    		list-style-type: none;
+			padding: 10px;
+		}
+
+		.section-quiz
+		{
+			display: block;
+			margin: 10px;
+		}
+
+		.section-quiz-question-response-input
+		{
+			float: left; 
+			clear: none;
+		}
+		.section-quiz-question-response-label
+		{
+			float: left; 
+			clear: none;
+		}
 	</style>
 </head>
 <body>
@@ -102,6 +128,16 @@
 	</div>
 	<div id="chw-overview-content" class="section-content">
 		<iframe width="560" height="315" src="http://www.youtube.com/embed/qvlTOhCmxvY" frameborder="0" allowfullscreen></iframe>
+	</div>
+	<div id="chw-overview-quiz" class="section-quiz">
+		<ol>
+			<li>
+				<span class="section-quiz-question">Sample Quiz Question</span>
+				<ul style="width: 100%">
+					<li><input type="radio" class="section-quiz-question-response-input" /><label class="section-quiz-question-response-label">Sample Answer</label></li>
+				</ul>
+			</li>
+		</ol>
 	</div>
 	<!-- END CHW Overview -->
 

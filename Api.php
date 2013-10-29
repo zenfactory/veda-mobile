@@ -19,7 +19,10 @@ Class Api
 
 	public function __construct()
 	{
-		$this->apiHost = API_HOST;
+		//$this->apiHost = API_HOST;
+
+		# TODO: Unhardcode this!!!!!
+		$this->apiHost = "https://api.vedaproject.org";
 		$this->ch = curl_init();
 		curl_setopt($this->ch, CURLOPT_SSL_VERIFYHOST, 0 );
 		curl_setopt($this->ch, CURLOPT_SSL_VERIFYPEER, 0 );

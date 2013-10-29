@@ -1,18 +1,34 @@
-// Function to make a request to the URI specified in parameter 1
-//function apiRequest(uri, method, dataObj, successCallBack, failureCallback)
-function apiRequest(uri, method, dataObj)
-{
+// Debug Global 
+debug = true;
 
-	// Add URI to data object
-	dataObj.uri = uri;
+// Function to make a request to the URI specified in parameter 1
+function apiRequest(dataObj)
+{
+	// Debug
+	if (debug)
+	{
+		console.log(dataObj);
+	}
 
 	// Make request to API proxy
 	responseObj = $.ajax(
 	{
-		type: method,
-		data: dataObj,
-		url: "proxy.php/"+uri,
+		url: "http://veda-mobile.zenfactory.org/proxy.php",
+		async: false,
+		data: dataObj
 	});
 
-	console.log(responseObj);
+	// Debug
+	if (debug)
+	{
+		return responseObj;
+	}
+
+	// Check query status for success
+	if (responseObj.status >= 200)
+	{	
+		return responseObj.responseText;
+	}
+
+
 }
