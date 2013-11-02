@@ -1,132 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<link rel="stylesheet" href="design.css"> 
 	<script src="phonegap.js"></script>
 	<script src="jquery-1.10.2.min.js"></script>
 	<!-- <script src="jquery.mobile-1.3.2.min.js"></script> -->
 	<script src="api.js"></script>
+	<script src="dom.js"></script>
 	<script type="text/javascript">
-		$(document).ready(function()
+		$(document).ready(function()                                                                                                                                                    
 		{
-			// Attach tap and click handler to each of the section dividors	
-			$(".section-header-active,.section-header-inactive").each(function()
-			{
-				$(this).click(function()
-				{
-					toggleSection(this);
-				});
-			});
-
-			var dataObj = new Object();
-			dataObj.uri = "/data/material/CHW_Training/CHW_Training/CHW_Overview/CHW_Overview/CHW_Overview/quiz";
-			dataObj.method = "GET";
-			response = apiRequest(dataObj);
-			console.log(response);
+    		bindSectionClickHandlers();
 		});
-
-		function toggleSection(obj)
-		{
-			// Get section id
-			sectionId = $(obj).attr("id");
-
-			// Get current state
-			if ($(obj).attr("class") == "section-header-inactive")
-			{
-				// Expand section content if necessary
-				$(obj).next(".section-content").css("display", "block");
-
-				// Replace section header background with active background
-				$(obj).attr("class", "section-header-active");
-			}
-			else
-			{
-				// Colapse section content if necessary
-				$(obj).next(".section-content").css("display", "none");
-
-				// Replace section header background with active background
-				$(obj).attr("class", "section-header-inactive");
-			}
-		}
 	</script>
-	<style>
-
-		/* Body to 100%, remove padding, margins and borders*/
-		body
-		{
-			width: 100%;
- 			margin: 0px;
- 			padding: 0px;
- 			border: 0px;
- 		}
-
-		.section-header-inactive
-		{
-			background-image: url("images/section-background-orange-inactive.png");
-			background-repeat: no-repeat;
-			height: 97px;
-			width: 599px;
-			/*width: 100%;*/
-		}
-
-		.section-header-active
-		{
-			background-image: url("images/section-background-orange-active.png");
-			background-repeat: no-repeat;
-			height: 97px;
-			width: 599px;
-			/*width: 100%;*/
-		}
-
-		.section-icon
-		{
-			margin-left: 10px;
-			margin-top: 6px;
-			height: 86px;
-			width: 86px;
-		}
-
-		.section-copy
-		{
-			color: white;
-			font-size: 30pt;
-			line-height: 97px;
-			vertical-align: top;
-			display: inline-block;
-		}
-
-		.section-content
-		{
-			display: none;
-			margin-top: 10px;
-		}
-
-		iframe
-		{
-		}
-
-		ul
-		{
-    		list-style-type: none;
-			padding: 10px;
-		}
-
-		.section-quiz
-		{
-			display: block;
-			margin: 10px;
-		}
-
-		.section-quiz-question-response-input
-		{
-			float: left; 
-			clear: none;
-		}
-		.section-quiz-question-response-label
-		{
-			float: left; 
-			clear: none;
-		}
-	</style>
 </head>
 <body>
 	<div id="header"><img src="images/logo.png" /></div>
@@ -135,6 +21,7 @@
 	<div id="chw-overview" class="section-header-inactive" />
 		<img id="chw-overview-icon" class="section-icon" src="images/chw-overview-icon.png" />
 		<span id="chw-overview-copy" class="section-copy">CHW Overview</span>
+		<img id="chw-overview-arrow" class="section-arrow" src="images/inactive-arrow.png" />
 	</div>
 	<div id="chw-overview-content" class="section-content">
 		<iframe width="560" height="315" src="http://www.youtube.com/embed/qvlTOhCmxvY" frameborder="0" allowfullscreen></iframe>
@@ -155,6 +42,7 @@
 	<div id="cough" class="section-header-inactive" />
 		<img id="cough-icon" class="section-icon" src="images/cough-icon.png" />
 		<span id="cough-copy" class="section-copy">Cough</span>
+		<img id="cough-arrow" class="section-arrow" src="images/inactive-arrow.png" />
 	</div>
 	<div id="cough-content" class="section-content">
 		<iframe width="560" height="315" src="http://www.youtube.com/embed/qvlTOhCmxvY" frameborder="0" allowfullscreen></iframe>
@@ -165,6 +53,7 @@
 	<div id="diarrhea" class="section-header-inactive" />
 		<img id="diarrhea-icon" class="section-icon" src="images/diarrhea-icon.png" />
 		<span id="diarrhea-copy" class="section-copy">Diarrhea</span>
+		<img id="diarrhea-arrow" class="section-arrow" src="images/inactive-arrow.png" />
 	</div>
 	<div id="diarrhea-content" class="section-content">
 		<iframe width="560" height="315" src="http://www.youtube.com/embed/qvlTOhCmxvY" frameborder="0" allowfullscreen></iframe>
@@ -175,6 +64,7 @@
 	<div id="fever" class="section-header-inactive" />
 		<img id="fever-icon" class="section-icon" src="images/fever-icon.png" />
 		<span id="fever-copy" class="section-copy">Fever</span>
+		<img id="fever-arrow" class="section-arrow" src="images/inactive-arrow.png" />
 	</div>
 	<div id="fever-content" class="section-content">
 		<iframe width="560" height="315" src="http://www.youtube.com/embed/qvlTOhCmxvY" frameborder="0" allowfullscreen></iframe>
@@ -185,6 +75,7 @@
 	<div id="bednets" class="section-header-inactive" />
 		<img id="bednets-icon" class="section-icon" src="images/bednets-icon.png" />
 		<span id="bednets-copy" class="section-copy">Bednets</span>
+		<img id="bednets-arrow" class="section-arrow" src="images/inactive-arrow.png" />
 	</div>
 	<div id="bednets-content" class="section-content">
 		<iframe width="560" height="315" src="http://www.youtube.com/embed/qvlTOhCmxvY" frameborder="0" allowfullscreen></iframe>
@@ -195,6 +86,7 @@
 	<div id="vaccinations" class="section-header-inactive" />
 		<img id="vaccinations-icon" class="section-icon" src="images/vaccinations-icon.png" />
 		<span id="vaccinations-copy" class="section-copy">Vaccinations</span>
+		<img id="vaccinations-arrow" class="section-arrow" src="images/inactive-arrow.png" />
 	</div>
 	<div id="vaccinations-content" class="section-content">
 		<iframe width="560" height="315" src="http://www.youtube.com/embed/qvlTOhCmxvY" frameborder="0" allowfullscreen></iframe>
@@ -205,6 +97,7 @@
 	<div id="bednets" class="section-header-inactive" />
 		<img id="bednets-icon" class="section-icon" src="images/bednets-icon.png" />
 		<span id="bednets-copy" class="section-copy">Bednets</span>
+		<img id="bednets-arrow" class="section-arrow" src="images/inactive-arrow.png" />
 	</div>
 	<div id="bednets-content" class="section-content">
 		<iframe width="560" height="315" src="http://www.youtube.com/embed/qvlTOhCmxvY" frameborder="0" allowfullscreen></iframe>
@@ -215,6 +108,7 @@
 	<div id="hygiene-sanitation" class="section-header-inactive" />
 		<img id="hygiene-sanitation-icon" class="section-icon" src="images/hygiene-sanitation-icon.png" />
 		<span id="hygiene-sanitation-copy" class="section-copy">Hygine and Sanitation</span>
+		<img id="hygiene-sanitation-arrow" class="section-arrow" src="images/inactive-arrow.png" />
 	</div>
 	<div id="hygiene-sanitation-content" class="section-content">
 		<iframe width="560" height="315" src="http://www.youtube.com/embed/qvlTOhCmxvY" frameborder="0" allowfullscreen></iframe>
@@ -225,6 +119,7 @@
 	<div id="nutrition" class="section-header-inactive" />
 		<img id="nutrition-icon" class="section-icon" src="images/nutrition-icon.png" />
 		<span id="nutrition-copy" class="section-copy">Nutrition</span>
+		<img id="nutrition-arrow" class="section-arrow" src="images/inactive-arrow.png" />
 	</div>
 	<div id="nutrition-content" class="section-content">
 		<iframe width="560" height="315" src="http://www.youtube.com/embed/qvlTOhCmxvY" frameborder="0" allowfullscreen></iframe>
@@ -235,6 +130,7 @@
 	<div id="water-treatment" class="section-header-inactive" />
 		<img id="water-treatment-icon" class="section-icon" src="images/water-treatment-icon.png" />
 		<span id="water-treatment-copy" class="section-copy">Water Treatment</span>
+		<img id="water-treatement-arrow" class="section-arrow" src="images/inactive-arrow.png" />
 	</div>
 	<div id="water-treatment-content" class="section-content">
 		<iframe width="560" height="315" src="http://www.youtube.com/embed/qvlTOhCmxvY" frameborder="0" allowfullscreen></iframe>
@@ -245,6 +141,7 @@
 	<div id="safe-food-handling" class="section-header-inactive" />
 		<img id="safe-food-handling-icon" class="section-icon" src="images/safe-food-handling-icon.png" />
 		<span id="safe-food-handling-copy" class="section-copy">Safe Food Handling</span>
+		<img id="safe-food-handling-arrow" class="section-arrow" src="images/inactive-arrow.png" />
 	</div>
 	<div id="safe-food-handling-content" class="section-content">
 		<iframe width="560" height="315" src="http://www.youtube.com/embed/qvlTOhCmxvY" frameborder="0" allowfullscreen></iframe>
@@ -255,6 +152,7 @@
 	<div id="antenatal-care" class="section-header-inactive" />
 		<img id="antenatal-care-icon" class="section-icon" src="images/antenatal-care-icon.png" />
 		<span id="antenatal-care-copy" class="section-copy">Antenatal Care</span>
+		<img id="antenatal-care-arrow" class="section-arrow" src="images/inactive-arrow.png" />
 	</div>
 	<div id="antenatal-care-content" class="section-content">
 		<iframe width="560" height="315" src="http://www.youtube.com/embed/qvlTOhCmxvY" frameborder="0" allowfullscreen></iframe>
@@ -265,6 +163,7 @@
 	<div id="newborn-care" class="section-header-inactive" />
 		<img id="newborn-care-icon" class="section-icon" src="images/newborn-care-icon.png" />
 		<span id="newborn-care-copy" class="section-copy">Newborn Care</span>
+		<img id="newborn-care-arrow" class="section-arrow" src="images/inactive-arrow.png" />
 	</div>
 	<div id="newborn-care-content" class="section-content">
 		<iframe width="560" height="315" src="http://www.youtube.com/embed/qvlTOhCmxvY" frameborder="0" allowfullscreen></iframe>
@@ -275,6 +174,7 @@
 	<div id="family-planning" class="section-header-inactive" />
 		<img id="family-planning-icon" class="section-icon" src="images/family-planning-icon.png" />
 		<span id="family-planning-copy" class="section-copy">Family Planning</span>
+		<img id="family-planning-arrow" class="section-arrow" src="images/inactive-arrow.png" />
 	</div>
 	<div id="family-planning-content" class="section-content">
 		<iframe width="560" height="315" src="http://www.youtube.com/embed/qvlTOhCmxvY" frameborder="0" allowfullscreen></iframe>

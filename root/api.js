@@ -1,7 +1,19 @@
 // Debug Global 
 debug = false;
 
-// Function to make a request to the URI specified in parameter 1
+// Define Constants 
+restServices = new Object();
+restServices.uri = "/data/material/";
+
+
+// Function to make a request to the URI 
+// Paramaters: 
+// 	- dataObj: 
+//				must include 
+//					the uri of the request
+//				may also include:
+//					the request method, defaults to GET	
+//					quiz answer data
 function apiRequest(dataObj)
 {
 	// Debug
@@ -37,6 +49,11 @@ function apiRequest(dataObj)
 		return responseObj.status
 		
 	}
-
-
 }
+
+var dataObj = new Object();                                                                                                                                                 
+dataObj.uri = "/data/material/CHW_Training/CHW_Training/CHW_Overview/CHW_Overview/CHW_Overview/quiz";
+dataObj.method = "GET";
+response = apiRequest(dataObj);
+console.log(response);
+
