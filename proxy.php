@@ -3,8 +3,6 @@
 #################################
 # Includes / Defines
 #################################
-DEFINE("API_HOST", "https://api.vedaproject.org");
-require_once("Api.php");
 
 #################################
 # Application Logic
@@ -13,18 +11,22 @@ require_once("Api.php");
 # Sanity
 if (isset($_REQUEST) && isset($_REQUEST['uri']) && !empty($_REQUEST['uri']) && isset($_REQUEST['method']) && !empty($_REQUEST['method']))
 {
-	# Instantiate new API interface object
-	$api = new Api();
+	# TODO: clean request vars
 
-	# Set data type 
-	$api->setDataType("json");
+	# Instantiate new CURL interface object
+	$ch = curl_init();
 
-	# Set data type 
-	$api->setUri($_REQUEST['uri']);
+	# Set Curl request options
+	curl_setopt($ch, CURLOPT_URL, "https://api.vedaproject.org{$_REQUEST['uri']}");
+	curl_setopt($ch, CURLOPT_HEADER, 0);
+	curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0 );
+	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0 );
+	curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
-	# Make request to API Server
-	$response = $api->makeRequest();
+	# Make curl request and get response
+	$response = curl_exec($ch);
 
 	# Dump response to client 
-	exit(json_encode($response));
+	exit($response);
 }

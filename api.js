@@ -1,7 +1,19 @@
 // Debug Global 
-debug = true;
+debug = false;
 
-// Function to make a request to the URI specified in parameter 1
+// Define Constants 
+restServices = new Object();
+restServices.uri = "/data/material/";
+
+
+// Function to make a request to the URI 
+// Paramaters: 
+// 	- dataObj: 
+//				must include 
+//					the uri of the request
+//				may also include:
+//					the request method, defaults to GET	
+//					quiz answer data
 function apiRequest(dataObj)
 {
 	// Debug
@@ -21,14 +33,27 @@ function apiRequest(dataObj)
 	// Debug
 	if (debug)
 	{
-		return responseObj;
+		return responseObj
 	}
 
 	// Check query status for success
 	if (responseObj.status >= 200)
-	{	
-		return responseObj.responseText;
+	{
+		// Turn the response text into a json object before returning it 	
+		var responseObj = $.parseJSON(responseObj.responseText);
+		return responseObj;
 	}
-
-
+	else
+	{
+		// Return error status
+		return responseObj.status
+		
+	}
 }
+
+var dataObj = new Object();                                                                                                                                                 
+dataObj.uri = "/data/material/CHW_Training/CHW_Training/CHW_Overview/CHW_Overview/CHW_Overview/quiz";
+dataObj.method = "GET";
+response = apiRequest(dataObj);
+console.log(response);
+
