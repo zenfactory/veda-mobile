@@ -1,10 +1,17 @@
 // Debug Global 
 debug = false;
 
-// Define Constants 
+/////////////////////////////////
+// Defines / Includes
+/////////////////////////////////
+
+// Constants
 restServices = new Object();
 restServices.uri = "/data/material/";
 
+/////////////////////////////////
+// Application Member Functions 
+/////////////////////////////////
 
 // Function to make a request to the URI 
 // Paramaters: 
@@ -50,6 +57,10 @@ function apiRequest(dataObj)
 		
 	}
 }
+
+/////////////////////////////////
+// Application Logic
+/////////////////////////////////
 
 var dataObj = new Object();                                                                                                                                                 
 dataObj.uri = "/data/material/CHW_Training/CHW_Training/CHW_Overview/CHW_Overview/CHW_Overview/quiz";
