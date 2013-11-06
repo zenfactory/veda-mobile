@@ -90,7 +90,7 @@ function stripHTMLentities(stringContent)
 		stringContent = stringContent.replace(/ulli/g, "");
 	}
 
-	// return
+	// Return
 	return stringContent;
 }
 
@@ -105,6 +105,9 @@ function buildQuizQuestion(questionObj)
 	// Instantiate answer choice variable
 	var answerChoices = "";
 
+	// Pull correct answer value
+	var correctAnswer = questionObj.correctAnswer;
+
 	// Clean up question content
 	var questionContent = stripHTMLentities(questionObj.content);
 
@@ -117,7 +120,8 @@ function buildQuizQuestion(questionObj)
 	// Loop through possible responses
 	for (var x in questionObj.answerChoices)
 	{
-		answerChoices += '<li><input type="radio" class="section-quiz-question-response-input" /><label class="section-quiz-question-response-label">'+questionObj.answerChoices[x]+'</label></li>'
+		var answerNumber = parseInt(x, 10) + parseInt(1, 10);	
+		answerChoices += '<li><input type="radio" class="section-quiz-question-response-input" value="'+correctAnswer+'" name="lesson-'+lessonId+'-question-'+questionNumber+'" id="lesson-'+lessonId+'-question-'+questionNumber+'-answer-'+answerNumber+'"/><label for="'+correctAnswer+'" class="section-quiz-question-response-label">'+questionObj.answerChoices[x]+'</label></li>'
 	}
 
 	// Build question closing container string
