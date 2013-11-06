@@ -42,7 +42,7 @@ body
 .section-copy
 {
 	color: white;
-	font-size: 30pt;
+	font-size: 25px;
 	line-height: 97px;
 	vertical-align: top;
 	display: inline-block;
@@ -100,4 +100,15 @@ li
 {
 	float: left; 
 	clear: none;
+}
+
+.section-quiz-question
+{
+	font-size: 70%;
+}
+
+.question-response
+{
+	display: none;
+	font-size: 70%;
 }

@@ -128,7 +128,7 @@ function buildQuizQuestion(questionObj)
 	var closeContainer = '</ul></li></ul></div>';
 
 	// Build response container
-	var responseContainer = '<span class="question-response">'+responseContent+'</span>';
+	var responseContainer = '<div class="question-response">'+responseContent+'</div>';
 
 	// Append question to content container
 	$('[class="section-content"][data-lessonId="'+lessonId+'"]').append(openContainer+answerChoices+closeContainer+responseContainer);
