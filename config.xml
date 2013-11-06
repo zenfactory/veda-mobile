@@ -24,10 +24,14 @@
 	<preference name="fullscreen" value="true" />
 
 	<!-- Splash Screen -->
+	<gap:splash src="images/ldpi.png" />
 	<gap:splash src="images/ldpi.png"  gap:platform="android" gap:density="ldpi" />
 	<gap:splash src="images/mdpi.png"  gap:platform="android" gap:density="mdpi" />
 	<gap:splash src="images/hdpi.png"  gap:platform="android" gap:density="hdpi" />
 	<gap:splash src="images/xhdpi.png" gap:platform="android" gap:density="xhdpi" />
+
+	<!-- Splash Screen Duration -->
+	<preference name="splash-screen-duration" value="10000"/>	
 
 	<!-- Icon Settins -->
 	<icon src="images/platform-icons/96.png" />
