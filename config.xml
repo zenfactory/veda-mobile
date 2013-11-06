@@ -14,10 +14,8 @@
     <author href="http://www.zenfactory.org" email="hshirani@zenfactory.org">zenfactory.org</author>
 
 	<preference name="Orientation" value="landscape" />
-	<preference name="splashscreen", "splash" />
-	<preference name="splashScreenDelay", 10000 />
-	<gap:splash src="images/splash-screen.png" />
-	<splash src="images/splash-screen.png" />
+	<gap:splash src="images/splash.png" />
+	<splash src="images/splash.png" />
 	<icon src="images/platform-icons/96.png" />
 	<icon src="images/platform-icons/36.png" gap:platform="android" gap:density="ldpi" />
 	<icon src="images/platform-icons/48.png" gap:platform="android" gap:density="mdpi" />
