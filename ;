@@ -56,44 +56,6 @@ function toggleSection(obj)
 	}
 }
 
-function stripHTMLentities(stringContent)
-{
-	// Sanity Check
-	if (typeof(stringContent) != "undefined" && stringContent != null && stringContent != "")
-	{
-		// Clean up question content
-		stringContent = stringContent.replace(/&lt;\/li&gt;&lt;li/g, "");
-		stringContent = stringContent.replace(/&lt;\/li&gt;&lt;\/ul/g, "");
-		stringContent = stringContent.replace(/&lt;p style=/g, "");
-		stringContent = stringContent.replace(/&lt;p/g, "");
-		stringContent = stringContent.replace(/&lt;b/g, "");
-		stringContent = stringContent.replace(/&lt;p&gt;/g, "");
-		stringContent = stringContent.replace(/&lt;\/p/g, "");
-		stringContent = stringContent.replace(/&lt;/g, "");
-		stringContent = stringContent.replace(/&gt;/g, "");
-		stringContent = stringContent.replace(/\/p/g, "");
-		stringContent = stringContent.replace(/\/b/g, "");
-		stringContent = stringContent.replace(/&quot;/g, "");
-		stringContent = stringContent.replace(/=/g, "");
-		stringContent = stringContent.replace(/style/g, "");
-		stringContent = stringContent.replace(/&amp;nbsp;/g, " ");
-		stringContent = stringContent.replace(/style=&quot;&quot;&gt;/g, " ");
-		stringContent = stringContent.replace(/\"/g, "");
-		stringContent = stringContent.replace(/&lt;ul/g, "");
-		stringContent = stringContent.replace(/&lt;li/g, "");
-		stringContent = stringContent.replace(/&lt;\/li/g, "");
-		stringContent = stringContent.replace(/&lt;\/ul/g, "");
-		stringContent = stringContent.replace(/[0-9]+px/g, "");
-		stringContent = stringContent.replace(/font-size:/g, "");
-		stringContent = stringContent.replace(/;/g, "");
-		stringContent = stringContent.replace(/ul li/g, "");
-		stringContent = stringContent.replace(/ulli/g, "");
-	}
-
-	// return
-	return stringContent;
-}
-
 function buildQuizQuestion(questionObj)
 {
 	// Pull the lesson id from the question object
@@ -105,14 +67,8 @@ function buildQuizQuestion(questionObj)
 	// Instantiate answer choice variable
 	var answerChoices = "";
 
-	// Clean up question content
-	var questionContent = stripHTMLentities(questionObj.content);
-
-	// Clean up response content
-	var responseContent = stripHTMLentities(questionObj.response);
-
 	// Build question opening container string
-	var openContainer = "<div id='lesson-"+lessonId+"-question-"+questionNumber+"' class='section-question'><ul><li><span class='section-quiz-question'>"+questionContent+"</span><ul style='width: 100%'>";
+	var openContainer = '<div id="lesson-'+lessonId+'-question-'+questionNumber+'" class="section-question"><ul><li><span class="section-quiz-question">"'+questionObj.content+'"</span><ul style="width: 100%">';
 
 	// Loop through possible responses
 	for (var x in questionObj.answerChoices)
@@ -123,11 +79,8 @@ function buildQuizQuestion(questionObj)
 	// Build question closing container string
 	var closeContainer = '</ul></li></ul></div>';
 
-	// Build response container
-	var responseContainer = '<span class="question-response">'+responseContent+'</span>';
-
 	// Append question to content container
-	$('[class="section-content"][data-lessonId="'+lessonId+'"]').append(openContainer+answerChoices+closeContainer+responseContainer);
+	$('[class="section-content"][data-lessonId="'+lessonId+'"]').append(openContainer+answerChoices+closeContainer);
 }
 
 function buildQuiz(quizObj)
@@ -141,7 +94,6 @@ function buildQuiz(quizObj)
 		// Put questions in order
 		quiz[quizObj[x].questionOrder] = quizObj[x];		
 	}
-	dbo(quiz);
 
 	// Loop through the ordered questions
 	for (var x in quiz)

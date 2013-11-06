@@ -13,8 +13,10 @@ body
 	background-repeat: no-repeat;
 	background-size: 100% 97px;
 	height: 97px;
-	width: 100%;
+	width: 99%;
 	margin-left: 4px;
+	margin-right: 4px;
+	margin-bottom: 5px;
 }
 
 .section-header-active
@@ -23,8 +25,10 @@ body
 	background-repeat: no-repeat;
 	background-size: 100% 97px;
 	height: 97px;
-	width: 100%;
+	width: 99%;
 	margin-left: 4px;
+	margin-right: 4px;
+	margin-bottom: 5px;
 }
 
 .section-icon
@@ -49,13 +53,14 @@ body
 {
 	display: none;
 	margin-top: 10px;
+	margin-left: 8px;
 }
 
 .section-arrow
 {
 	position: absolute;
 	float: right;
-	right: 15px;
+	right: 20px;
 	margin-top: 20px;
 }
 
@@ -65,10 +70,20 @@ iframe
 
 ul
 {
-list-style-type: none;
+	list-style-type: none;
 	padding: 10px;
 }
 
+li
+{
+	clear: both;
+}
+
+.section-response
+{
+	clear: both;
+	display: none;	
+}
 .section-quiz
 {
 	display: block;
@@ -80,6 +95,7 @@ list-style-type: none;
 	float: left; 
 	clear: none;
 }
+
 .section-quiz-question-response-label
 {
 	float: left; 
