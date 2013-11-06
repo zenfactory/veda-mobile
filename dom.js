@@ -8,6 +8,47 @@ function bindSectionClickHandlers()
 			toggleSection(this);
 		});
 	});
+
+}
+
+function bindButtonClickHandlers()
+{
+	// Attach tap and click handler to each of the section dividors	
+	$(".question-show-response").each(function()
+	{
+		$(this).click(function()
+		{
+			toggleResponse(this);
+		});
+	});
+}
+
+function toggleResponse(obj)
+{
+	// Pull lesson id
+	var lessonId = $(obj).attr("data-lessonId");
+
+	// Pull question id
+	var questionNumber = $(obj).attr("data-questionNumber");
+
+	dbo(lessonId);
+	dbo(questionNumber);
+	dbo($(".question-response[data-lessonId="+lessonId+"][data-questionNumber="+questionNumber+"]").css("display"));
+
+	// Check the current state of the response container
+	if ($(".question-response[data-lessonId="+lessonId+"][data-questionNumber="+questionNumber+"]").css("display") == "none")
+	{
+		dbo("state = none")
+		// Set the response container to be visable
+		$(".question-response[data-lessonId="+lessonId+"][data-questionNumber="+questionNumber+"]").css("display", "block")
+	}
+	else
+	{
+		dbo("state = block")
+		// Hide the response container 
+		$(".question-response[data-lessonId="+lessonId+"][data-questionNumber="+questionNumber+"]").css("display", "none")
+	}
+	
 }
 
 function toggleSection(obj)
@@ -34,6 +75,9 @@ function toggleSection(obj)
 				$(this).attr("src", "images/active-arrow.png");
 			}
 		});
+
+		// Bind event handlers to newly created elements
+		bindButtonClickHandlers();
 	}
 	else
 	{
@@ -128,10 +172,14 @@ function buildQuizQuestion(questionObj)
 	var closeContainer = '</ul></li></ul></div>';
 
 	// Build response container
-	var responseContainer = '<div class="question-response">'+responseContent+'</div>';
+	var responseContainer = '<div data-lessonId='+lessonId+' data-questionNumber='+questionNumber+' class="question-response">'+responseContent+'</div>';
+
+	// Build Show Answer Button
+	var showAnswerButton = '<div data-lessonId='+lessonId+' data-questionNumber='+questionNumber+' class="question-show-response">Show Response</div>';
 
 	// Append question to content container
-	$('[class="section-content"][data-lessonId="'+lessonId+'"]').append(openContainer+answerChoices+closeContainer+responseContainer);
+	$('[class="section-content"][data-lessonId="'+lessonId+'"]').append(openContainer+answerChoices+closeContainer+responseContainer+showAnswerButton);
+
 }
 
 function buildQuiz(quizObj)
@@ -145,7 +193,6 @@ function buildQuiz(quizObj)
 		// Put questions in order
 		quiz[quizObj[x].questionOrder] = quizObj[x];		
 	}
-	dbo(quiz);
 
 	// Loop through the ordered questions
 	for (var x in quiz)
