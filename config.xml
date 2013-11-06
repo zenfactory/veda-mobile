@@ -1,21 +1,32 @@
 <?xml version="1.0" encoding="UTF-8" ?>
     <widget xmlns = "http://www.w3.org/ns/widgets"
-        xmlns:gap = "http://phonegap.com/ns/2.9.0"
+        xmlns:gap = "http://phonegap.com/ns/3.0.0"
         id        = "org.vedaproject.mobile"
         versionCode="03" 
-        version   = "2.9.0">
+        version   = "3.0.0">
 
-    <!-- versionCode is optional and Android only -->
-
+	<!-- Application Name --> 
     <name>Veda Project Mobile</name>
 
+    <!-- versionCode is optional and Android only -->
+	<preference name="phonegap-version" value="3.0.0" />
+
+	<!-- Description -->
     <description>The Veda Project Mobile App</description>
 
+	<!-- Author -->
     <author href="http://www.zenfactory.org" email="hshirani@zenfactory.org">zenfactory.org</author>
 
-	<preference name="Orientation" value="landscape" />
-	<gap:splash src="images/splash.png" />
-	<splash src="images/splash.png" />
+	<!-- Screen Orientation -->
+	<preference name="orientation" value="landscape" />
+
+	<!-- Fullscreen -->
+	<preference name="fullscreen" value="true" />
+
+	<!-- Splash Screen -->
+	<gap:splash src="splash.png" gap:platform="android" width="320" height="480" />
+
+	<!-- Icon Settins -->
 	<icon src="images/platform-icons/96.png" />
 	<icon src="images/platform-icons/36.png" gap:platform="android" gap:density="ldpi" />
 	<icon src="images/platform-icons/48.png" gap:platform="android" gap:density="mdpi" />
