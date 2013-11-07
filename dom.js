@@ -16,7 +16,7 @@ function bindButtonClickHandlers()
 	// Attach tap and click handler to each of the section dividors	
 	$(".question-show-response").each(function()
 	{
-		$(this).click(function()
+		$(this).live("click", function()
 		{
 			toggleResponse(this);
 		});
@@ -77,7 +77,7 @@ function toggleSection(obj)
 		});
 
 		// Bind event handlers to newly created elements
-		bindButtonClickHandlers();
+		//bindButtonClickHandlers();
 	}
 	else
 	{
