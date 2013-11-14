@@ -3,7 +3,7 @@ function bindSectionClickHandlers()
 	// Attach tap and click handler to each of the section dividors	
 	$(".section-header-active,.section-header-inactive").each(function()
 	{
-		$(this).click(function()
+		$(this).bind("click", function()
 		{
 			toggleSection(this);
 		});
@@ -16,7 +16,7 @@ function bindButtonClickHandlers()
 	// Attach tap and click handler to each of the section dividors	
 	$(".question-show-response").each(function()
 	{
-		$(this).live("click", function()
+		$(this).live("tap", function()
 		{
 			toggleResponse(this);
 		});
