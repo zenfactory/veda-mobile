@@ -19,6 +19,9 @@
 			{
 				// Pull Quiz data into an object for use in DOM
 				var quizData = JSON.parse($("#quiz-data").text());
+
+				// Structure quiz data
+				quizData = structureQuizData(quizData);
 	
 				// Loop through quizData
 				for (var x in quizData)

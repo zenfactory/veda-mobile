@@ -1,16 +1,3 @@
-function bindSectionClickHandlers()
-{
-	// Attach tap and click handler to each of the section dividors	
-	$(".section-header-active,.section-header-inactive").each(function()
-	{
-		$(this).on("tap", function()
-		{
-			toggleSection(this);
-		});
-	});
-
-}
-
 function toggleResponse(obj)
 {
 	// Pull lesson id
@@ -160,27 +147,51 @@ function buildQuizQuestion(questionObj)
 	var showAnswerButton = '<div data-lessonId='+lessonId+' data-questionNumber='+questionNumber+' class="question-show-response">Show Response</div>';
 
 	// Append question to content container
-	$('[class="section-content"][data-lessonId="'+lessonId+'"]').append(openContainer+answerChoices+closeContainer+responseContainer+showAnswerButton);
+	$('[class="section-content"][data-lessonId="'+lessonId+'"]').append(openContainer+answerChoices+closeContainer+responseContainer+showAnswerButton+iconBox);
 
+}
+
+function structureQuizData(quizData)
+{
+	// Instantiate new object to hold structured quiz data
+	var structuredData = new Object();
+
+	// Loop through quizes
+    for (var x in quizData)
+    {
+		// Create container for quiz
+		var quiz = new Object();
+
+		// Loop through quiz questions
+		for (var y in quizData[x])
+		{
+			// Order each question in the quiz object
+			quiz[quizData[x][y].questionOrder] = quizData[x][y];
+
+			// Extract the lessonId
+			var lessonId = quizData[x][y].lessonId;
+		}
+
+		// Append the ordered quiz to the structured quiz data using the lesson id as the index
+		structuredData[lessonId] = quiz;
+	
+	}
+
+	// Return
+	return structuredData;
 }
 
 function buildQuiz(quizObj)
 {
 	// Instantiate a new quiz object to contain ordered questions
 	var quiz = new Object();
-
-	// Loop through questions
+	
+	// Loop through the questions
 	for (var x in quizObj)
 	{
-		// Put questions in order
-		quiz[quizObj[x].questionOrder] = quizObj[x];		
-	}
-
-	// Loop through the ordered questions
-	for (var x in quiz)
-	{
+		dbo(quizObj);
 		// Build quiz question
-		buildQuizQuestion(quiz[x]);
+		buildQuizQuestion(quizObj[x]);
 	}
 }
 
