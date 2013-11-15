@@ -4,7 +4,7 @@
 	<link rel="stylesheet" href="design.css"> 
 	<script src="phonegap.js"></script>
 	<script src="jquery-1.10.2.min.js"></script>
-	<!-- <script src="jquery.mobile-1.3.2.min.js"></script> -->
+	<script src="jquery.mobile-1.3.2.min.js"></script>
 	<script src="api.js"></script>
 	<script src="dom.js"></script>
 	<script type="text/json" id="quiz-data">
@@ -17,12 +17,6 @@
 		{
 			function onDeviceReady()                                                                                                                                                    
 			{
-				// Bind click event handler to all the section headers
-    			bindSectionClickHandlers();
-	
-				// Bind show response click handlers
-				bindButtonClickHandlers();
-		
 				// Pull Quiz data into an object for use in DOM
 				var quizData = JSON.parse($("#quiz-data").text());
 	
@@ -32,6 +26,20 @@
 					// Pass the quiz object to the dom builder
 					buildQuiz(quizData[x]);
 				}
+
+				// Bind the Section header click handlers
+				$(".section-header-active,.section-header-inactive").on("tap", function()
+				{
+					toggleSection(this);
+    			});
+	
+
+				// Bind the show question response button handler
+				$(".question-show-response").on("tap", function()
+    			{
+        			toggleResponse(this);                                                                                                                                                                         
+    			});
+
 			}
 			onDeviceReady();
 		});

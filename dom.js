@@ -3,24 +3,12 @@ function bindSectionClickHandlers()
 	// Attach tap and click handler to each of the section dividors	
 	$(".section-header-active,.section-header-inactive").each(function()
 	{
-		$(this).bind("click", function()
+		$(this).on("tap", function()
 		{
 			toggleSection(this);
 		});
 	});
 
-}
-
-function bindButtonClickHandlers()
-{
-	// Attach tap and click handler to each of the section dividors	
-	$(".question-show-response").each(function()
-	{
-		$(this).live("tap", function()
-		{
-			toggleResponse(this);
-		});
-	});
 }
 
 function toggleResponse(obj)
@@ -31,20 +19,14 @@ function toggleResponse(obj)
 	// Pull question id
 	var questionNumber = $(obj).attr("data-questionNumber");
 
-	dbo(lessonId);
-	dbo(questionNumber);
-	dbo($(".question-response[data-lessonId="+lessonId+"][data-questionNumber="+questionNumber+"]").css("display"));
-
 	// Check the current state of the response container
 	if ($(".question-response[data-lessonId="+lessonId+"][data-questionNumber="+questionNumber+"]").css("display") == "none")
 	{
-		dbo("state = none")
 		// Set the response container to be visable
 		$(".question-response[data-lessonId="+lessonId+"][data-questionNumber="+questionNumber+"]").css("display", "block")
 	}
 	else
 	{
-		dbo("state = block")
 		// Hide the response container 
 		$(".question-response[data-lessonId="+lessonId+"][data-questionNumber="+questionNumber+"]").css("display", "none")
 	}
@@ -200,5 +182,9 @@ function buildQuiz(quizObj)
 		// Build quiz question
 		buildQuizQuestion(quiz[x]);
 	}
+}
+
+function buildWrongRightBox(quizObj)
+{
 }
 
