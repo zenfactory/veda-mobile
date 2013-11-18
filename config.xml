@@ -18,10 +18,10 @@
     <author href="http://www.zenfactory.org" email="hshirani@zenfactory.org">zenfactory.org</author>
 
 	<!-- Screen Orientation -->
-	<preference name="orientation" value="landscape" />
+	<!-- <preference name="orientation" value="landscape" /> -->
 
 	<!-- Fullscreen -->
-	<preference name="fullscreen" value="true" />
+	<!-- <preference name="fullscreen" value="true" /> -->
 
 	<!-- Splash Screen -->
 	<gap:splash src="images/ldpi.png" />
