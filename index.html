@@ -17,6 +17,9 @@
 		{
 			function onDeviceReady()                                                                                                                                                    
 			{
+				// Show Splash Screen
+				navigator.splashscreen.show();
+
 				// Pull Quiz data into an object for use in DOM
 				quizData = JSON.parse($("#quiz-data").text());
 
@@ -42,6 +45,9 @@
     			{
         			toggleResponse(this);                                                                                                                                                                         
     			});
+
+				// Show Splash Screen
+				navigator.splashscreen.hide();
 
 			}
 			onDeviceReady();
