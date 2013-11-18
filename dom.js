@@ -6,14 +6,33 @@ function toggleResponse(obj)
 	// Pull question id
 	var questionNumber = $(obj).attr("data-questionNumber");
 
+	// Pull question object
+	quizData[lessonId][questionNumber]
+
+	
+
 	// Check the current state of the response container
 	if ($(".question-response[data-lessonId="+lessonId+"][data-questionNumber="+questionNumber+"]").css("display") == "none")
 	{
+		// Determine if the correct answer was checked by the student
+		if($("input[name=lesson-"+lessonId+"-question-"+questionNumber+"]:radio:checked").val() == quizData[lessonId][questionNumber].correctAnswer)
+		{
+			// TODO: toggle correct answer icon
+			dbo("correct");
+		}
+		else
+		{
+			// TODO: toggle incorrect answer icon
+			dbo("incorrect");
+		}
+
 		// Set the response container to be visable
 		$(".question-response[data-lessonId="+lessonId+"][data-questionNumber="+questionNumber+"]").css("display", "block")
 	}
 	else
 	{
+		// TODO: Remove both icons
+			
 		// Hide the response container 
 		$(".question-response[data-lessonId="+lessonId+"][data-questionNumber="+questionNumber+"]").css("display", "none")
 	}
@@ -118,9 +137,6 @@ function buildQuizQuestion(questionObj)
 	// Instantiate answer choice variable
 	var answerChoices = "";
 
-	// Pull correct answer value
-	var correctAnswer = questionObj.correctAnswer;
-
 	// Clean up question content
 	var questionContent = stripHTMLentities(questionObj.content);
 
@@ -134,7 +150,7 @@ function buildQuizQuestion(questionObj)
 	for (var x in questionObj.answerChoices)
 	{
 		var answerNumber = parseInt(x, 10) + parseInt(1, 10);	
-		answerChoices += '<li><input type="radio" class="section-quiz-question-response-input" value="'+correctAnswer+'" name="lesson-'+lessonId+'-question-'+questionNumber+'" id="lesson-'+lessonId+'-question-'+questionNumber+'-answer-'+answerNumber+'"/><label for="'+correctAnswer+'" class="section-quiz-question-response-label">'+questionObj.answerChoices[x]+'</label></li>'
+		answerChoices += '<li><input type="radio" class="section-quiz-question-response-input" value="'+answerNumber+'" name="lesson-'+lessonId+'-question-'+questionNumber+'" id="lesson-'+lessonId+'-question-'+questionNumber+'-answer-'+answerNumber+'"/><label for="'+answerNumber+'" class="section-quiz-question-response-label">'+questionObj.answerChoices[x]+'</label></li>'
 	}
 
 	// Build question closing container string
@@ -146,8 +162,11 @@ function buildQuizQuestion(questionObj)
 	// Build Show Answer Button
 	var showAnswerButton = '<div data-lessonId='+lessonId+' data-questionNumber='+questionNumber+' class="question-show-response">Show Response</div>';
 
+	// TODO:
+	// Design to slice up correct answer and incorrect answer icon boxes
+
 	// Append question to content container
-	$('[class="section-content"][data-lessonId="'+lessonId+'"]').append(openContainer+answerChoices+closeContainer+responseContainer+showAnswerButton+iconBox);
+	$('[class="section-content"][data-lessonId="'+lessonId+'"]').append(openContainer+answerChoices+closeContainer+responseContainer+showAnswerButton);
 
 }
 
@@ -189,7 +208,6 @@ function buildQuiz(quizObj)
 	// Loop through the questions
 	for (var x in quizObj)
 	{
-		dbo(quizObj);
 		// Build quiz question
 		buildQuizQuestion(quizObj[x]);
 	}

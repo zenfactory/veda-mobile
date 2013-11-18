@@ -31,6 +31,10 @@
 	<gap:splash src="images/xhdpi.png" gap:platform="android" gap:density="xhdpi" />
 
 	<!-- Splash Screen Duration -->
+	<preference name="splash-screen-duration" value="10000"/>
+	
+
+	<!-- Splash Screen Duration -->
 	<preference name="splash-screen-duration" value="10000"/>	
 
 	<!-- Icon Settins -->
