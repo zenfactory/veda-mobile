@@ -21,17 +21,17 @@
 	<preference name="fullscreen" value="true" />
 
 	<!-- Splash Screen -->
-	<gap:splash src="img/splash/hdpi.png" />
-	<gap:splash src="img/splash/ldpi.png"  gap:platform="android" gap:density="ldpi" />
-	<gap:splash src="img/splash/mdpi.png"  gap:platform="android" gap:density="mdpi" />
-	<gap:splash src="img/splash/hdpi.png"  gap:platform="android" gap:density="hdpi" />
-	<gap:splash src="img/splash/xhdpi.png" gap:platform="android" gap:density="xhdpi" />
+	<!-- <gap:splash src="images/hdpi.png" /> -->
+	<gap:splash src="images/ldpi.png"  gap:platform="android" gap:density="ldpi" />
+	<gap:splash src="images/mdpi.png"  gap:platform="android" gap:density="mdpi" />
+	<gap:splash src="images/hdpi.png"  gap:platform="android" gap:density="hdpi" />
+	<gap:splash src="images/xhdpi.png" gap:platform="android" gap:density="xhdpi" />
 
-	<splash src="img/splash/hdpi.png" />
-	<splash src="img/splash/ldpi.png"  gap:platform="android" gap:density="ldpi" />
-	<splash src="img/splash/mdpi.png"  gap:platform="android" gap:density="mdpi" />
-	<splash src="img/splash/hdpi.png"  gap:platform="android" gap:density="hdpi" />
-	<splash src="img/splash/xhdpi.png" gap:platform="android" gap:density="xhdpi" />
+	<!-- <splash src="images/hdpi.png" /> -->
+	<splash src="images/ldpi.png"  gap:platform="android" gap:density="ldpi" />
+	<splash src="images/mdpi.png"  gap:platform="android" gap:density="mdpi" />
+	<splash src="images/hdpi.png"  gap:platform="android" gap:density="hdpi" />
+	<splash src="images/xhdpi.png" gap:platform="android" gap:density="xhdpi" />
 
 	<!-- Splash Screen Duration -->
 	<preference name="splash-screen-duration" value="100000"/>
