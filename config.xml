@@ -24,12 +24,13 @@
 	<preference name="fullscreen" value="true" />
 
 	<!-- Splash Screen -->
-	<gap:splash src="img/splash/ldpi.png" />
+	<gap:splash src="img/splash/xhdpi.png" />
 	<gap:splash src="img/splash/ldpi.png"  gap:platform="android" gap:density="ldpi" />
 	<gap:splash src="img/splash/mdpi.png"  gap:platform="android" gap:density="mdpi" />
 	<gap:splash src="img/splash/hdpi.png"  gap:platform="android" gap:density="hdpi" />
 	<gap:splash src="img/splash/xhdpi.png" gap:platform="android" gap:density="xhdpi" />
-	<splash src="img/splash/ldpi.png" />
+
+	<splash src="img/splash/xhdpi.png" />
 	<splash src="img/splash/ldpi.png"  gap:platform="android" gap:density="ldpi" />
 	<splash src="img/splash/mdpi.png"  gap:platform="android" gap:density="mdpi" />
 	<splash src="img/splash/hdpi.png"  gap:platform="android" gap:density="hdpi" />
