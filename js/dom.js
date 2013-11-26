@@ -1,7 +1,3 @@
-function toggleHover(obj)
-{ $(obj).attr("src", "images/show-response-hover.png");
-}
-
 function toggleResponse(obj)
 {
 	// Pull lesson id
