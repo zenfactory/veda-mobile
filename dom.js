@@ -1,3 +1,7 @@
+function toggleHover(obj)
+{ $(obj).attr("src", "images/show-response-hover.png");
+}
+
 function toggleResponse(obj)
 {
 	// Pull lesson id
@@ -14,16 +18,20 @@ function toggleResponse(obj)
 	// Check the current state of the response container
 	if ($(".question-response[data-lessonId="+lessonId+"][data-questionNumber="+questionNumber+"]").css("display") == "none")
 	{
+		// Toggle incorrect answer icon on
+		$(".answer-validity-container[data-lessonId="+lessonId+"][data-questionNumber="+questionNumber+"]").css("display", "");
+
 		// Determine if the correct answer was checked by the student
 		if($("input[name=lesson-"+lessonId+"-question-"+questionNumber+"]:radio:checked").val() == quizData[lessonId][questionNumber].correctAnswer)
 		{
-			// TODO: toggle correct answer icon
-			dbo("correct");
+
+			// Toggle correct answer icon
+			$(".answer-validity-container[data-lessonId="+lessonId+"][data-questionNumber="+questionNumber+"]").html("<img src='images/check.png' />");
 		}
 		else
 		{
 			// TODO: toggle incorrect answer icon
-			dbo("incorrect");
+			$(".answer-validity-container[data-lessonId="+lessonId+"][data-questionNumber="+questionNumber+"]").html("<img src='images/x.png' />");
 		}
 
 		// Set the response container to be visable
@@ -35,6 +43,9 @@ function toggleResponse(obj)
 			
 		// Hide the response container 
 		$(".question-response[data-lessonId="+lessonId+"][data-questionNumber="+questionNumber+"]").css("display", "none")
+
+		// TODO: toggle incorrect answer icon
+		$(".answer-validity-container[data-lessonId="+lessonId+"][data-questionNumber="+questionNumber+"]").css("display", "none");
 	}
 	
 }
@@ -160,10 +171,7 @@ function buildQuizQuestion(questionObj)
 	var responseContainer = '<div data-lessonId='+lessonId+' data-questionNumber='+questionNumber+' class="question-response">'+responseContent+'</div>';
 
 	// Build Show Answer Button
-	var showAnswerButton = '<div data-lessonId='+lessonId+' data-questionNumber='+questionNumber+' class="question-show-response">Show Response</div>';
-
-	// TODO:
-	// Design to slice up correct answer and incorrect answer icon boxes
+	var showAnswerButton = '<div data-lessonId='+lessonId+' data-questionNumber='+questionNumber+' class="question-show-response"><img data-lessonId='+lessonId+' data-questionNumber='+questionNumber+' class="answer-validity-container" /></div>';
 
 	// Append question to content container
 	$('[class="section-content"][data-lessonId="'+lessonId+'"]').append(openContainer+answerChoices+closeContainer+responseContainer+showAnswerButton);
