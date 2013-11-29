@@ -1,0 +1,42 @@
+- When module is opened new page is loaded
+- Video loads on separate page from quiz
+- Add button to go to quiz after the video  
+
+- Module
+	- Lesson
+		- Video lecture
+		- Take Quiz
+		- Go Back
+			- Android Native
+			- Embedded in the DOM
+	- Lesson
+	- Lesson
+
+Process Flow
+	- On App.initalize()
+		- Show home screen
+	- On module tap event 
+		- populate button attributes
+			- lessonId
+			- quizId (if applicable)
+		- navigate to lesson framework
+		- populate lesson framework
+			- video
+			- back button href
+			- back button lesson id
+			- quiz button href
+		- On quiz button tap event
+			- navigate to quiz page
+			- populate quiz framework
+				- replace quiz button with show answer button
+				- populate back button lesson id
+
+Todo
+	- Style navigation buttons
+	- Define event handlers
+		- Back
+			- Pull lesson id from data-lessonId attribute
+			- Populate lesson content based on lesson id
+		- Quiz
+			- Pull lesson id from data-lessonId attribute
+	- Build page frameworks
