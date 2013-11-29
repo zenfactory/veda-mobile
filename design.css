@@ -141,6 +141,16 @@ li
 	clear: none;
 }
 
+.question-hide-response
+{
+	background-image: url("images/hide-response.png");
+}
+
+.question-hide-response:hover
+{
+	background-image: url("images/hide-response-hover.png");
+}
+
 .answer-validity-container
 {
 	display: inline-block;	

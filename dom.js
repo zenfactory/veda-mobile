@@ -18,8 +18,11 @@ function toggleResponse(obj)
 	// Check the current state of the response container
 	if ($(".question-response[data-lessonId="+lessonId+"][data-questionNumber="+questionNumber+"]").css("display") == "none")
 	{
-		// Toggle incorrect answer icon on
+		// Show check mark / x
 		$(".answer-validity-container[data-lessonId="+lessonId+"][data-questionNumber="+questionNumber+"]").css("display", "");
+
+		// Change button to "hide response"
+		$(".question-show-response[data-lessonId="+lessonId+"][data-questionNumber="+questionNumber+"]").addClass("question-hide-response");
 
 		// Determine if the correct answer was checked by the student
 		if($("input[name=lesson-"+lessonId+"-question-"+questionNumber+"]:radio:checked").val() == quizData[lessonId][questionNumber].correctAnswer)
@@ -44,8 +47,11 @@ function toggleResponse(obj)
 		// Hide the response container 
 		$(".question-response[data-lessonId="+lessonId+"][data-questionNumber="+questionNumber+"]").css("display", "none")
 
-		// TODO: toggle incorrect answer icon
+		// TODO: toggle answer validity (check / x)
 		$(".answer-validity-container[data-lessonId="+lessonId+"][data-questionNumber="+questionNumber+"]").css("display", "none");
+
+		// Change button to "hide response"
+		$(".question-show-response[data-lessonId="+lessonId+"][data-questionNumber="+questionNumber+"]").removeClass("question-hide-response");
 	}
 	
 }
