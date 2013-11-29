@@ -24,6 +24,16 @@ li
 }
 */
 
+.ui-header
+{
+	background-color: white;
+}
+
+.ui-bar-a
+{
+	background-color: white;
+}
+
 .section-header-inactive
 {
 	background-image: url("images/section-header-wide.png");
