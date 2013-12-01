@@ -30,9 +30,24 @@ li
 	background-color: white;
 }
 
-.ui-bar-g 
+.ui-btn-hover-f,.ui-btn-up-f
 {
-	
+	background-color: #f58020;
+}
+
+.ui-btn-up-f a.ui-link-inherit 
+{
+    color: #fff;
+}
+
+.ui-btn-up-f a.ui-link-inherit:hover
+{
+    color: #fff;
+}
+
+.ui-btn-hover-a 
+{
+    color: #fff;
 }
 
 .ui-content
