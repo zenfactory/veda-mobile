@@ -176,7 +176,7 @@ function buildQuizQuestion(questionObj)
 	for (var x in questionObj.answerChoices)
 	{
 		var answerNumber = parseInt(x, 10) + parseInt(1, 10);	
-		answerChoices += '<li><input type="radio" class="section-quiz-question-response-input" value="'+answerNumber+'" name="lesson-'+lessonId+'-question-'+questionNumber+'" id="lesson-'+lessonId+'-question-'+questionNumber+'-answer-'+answerNumber+'"/><label for="'+answerNumber+'" class="section-quiz-question-response-label">'+questionObj.answerChoices[x]+'</label></li>'
+		answerChoices += '<li><input type="radio" class="section-quiz-question-response-input" value="'+answerNumber+'" name="lesson-'+lessonId+'-question-'+questionNumber+'" id="lesson-'+lessonId+'-question-'+questionNumber+'-answer-'+answerNumber+'" data-lessonId="'+lessonId+'" data-questionNumber="'+questionNumber+'"/><label for="'+answerNumber+'" class="section-quiz-question-response-label">'+questionObj.answerChoices[x]+'</label></li>'
 	}
 
 	// Build question closing container string
@@ -208,11 +208,16 @@ function buildQuiz(quizObj)
 	for (var x in quizObj)
 	{
 		// Build quiz question
-		quizHtml += buildQuizQuestion(quizObj[x]);
+		quizHtml = buildQuizQuestion(quizObj[x]);
 
 		// Append it to DOM
 		$('[class="section-content"][data-lessonId="'+quizObj[x].lessonId+'"]').append(quizHtml);
 	}
+}
+
+function toggleCheckAnswerButtons(answerObject)
+{
+		
 }
 
 function toggleQuiz(lessonId)

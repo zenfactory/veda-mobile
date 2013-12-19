@@ -38,7 +38,6 @@
 				{
 					//buildQuiz(quizData[$(this).attr("data-lessonId")]);
 					toggleQuiz($(this).attr("data-lessonId"));
-					dbo("show-quiz-btn on click event fired");
 				});
 
 				// Bind the Section header click handlers
@@ -63,6 +62,12 @@
 				$(".question-show-response").on("hover", function()
     			{
         			toggleHover(this);                                                                                                                                                                         
+    			});
+
+				// Bind the answer selectors to the answer change event handler
+				$(".section-quiz-question-response-input").on("change", function()
+    			{
+        			toggleCheckAnswerButtons(this);	
     			});
 
 
