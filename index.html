@@ -4,7 +4,7 @@
 	<link rel="stylesheet" href="design.css"> 
 	<script src="phonegap.js"></script>
 	<script src="jquery-1.10.2.min.js"></script>
-	<script src="jquery.mobile-1.3.2.min.js"></script>
+	<!-- <script src="jquery.mobile-1.3.2.min.js"></script> -->
 	<script src="api.js"></script>
 	<script src="dom.js"></script>
 	<script type="text/json" id="quiz-data">
@@ -25,7 +25,7 @@
 
 				// Structure quiz data
 				quizData = structureQuizData(quizData);
-	
+
 				// Loop through quizData
 				for (var x in quizData)
 				{
@@ -33,15 +33,28 @@
 					buildQuiz(quizData[x]);
 				}
 
+				// Bind the show quiz button click event to its appropriate handler
+				$(".show-quiz-btn").on("click", function()
+				{
+					//buildQuiz(quizData[$(this).attr("data-lessonId")]);
+					toggleQuiz($(this).attr("data-lessonId"));
+					dbo("show-quiz-btn on click event fired");
+				});
+
 				// Bind the Section header click handlers
-				$(".section-header-active,.section-header-inactive").on("tap", function()
+				$(".section-header-active,.section-header-inactive").on("click", function()
 				{
 					toggleSection(this);
     			});
-	
 
+				// Bind the go back button handlers to the go back buttons
+				$(".go-back-btn").on("click", function()
+				{
+					goBackBtnHandler(this);
+    			});
+	
 				// Bind the show question response button handler
-				$(".question-show-response").on("tap", function()
+				$(".question-show-response").on("click", function()
     			{
         			toggleResponse(this);                                                                                                                                                                         
     			});
@@ -72,6 +85,7 @@
 	</div>
 	<div id="chw-overview-content" class="section-content" data-lessonId="542" >
 		<iframe width="560" height="315" src="http://www.youtube.com/embed/qvlTOhCmxvY" frameborder="0" allowfullscreen></iframe>
+		<div class="nav-container"><a href="javascript: void(0);" class="go-back-link"><span data-lessonId="542" class="go-back-btn">Go Back</span></a><a href="javascript: void(0);" class="show-quiz-link"><span data-lessonId="542" class="show-quiz-btn">Show Quiz</span></a></div>
 	</div>
 	<!-- END CHW Overview -->
 
@@ -83,6 +97,7 @@
 	</div>
 	<div id="cough-content" class="section-content" data-lessonId="543">
 		<iframe width="560" height="315" src="http://www.youtube.com/embed/qvlTOhCmxvY" frameborder="0" allowfullscreen></iframe>
+		<div class="nav-container"><a href="javascript: void(0);" class="go-back-link"><span data-lessonId="543" class="go-back-btn">Go Back</span></a><a href="javascript: void(0);" class="show-quiz-link"><span data-lessonId="543" class="show-quiz-btn">Show Quiz</span></a></div>
 	</div>
 	<!-- END Cough -->
 
@@ -94,6 +109,7 @@
 	</div>
 	<div id="diarrhea-content" class="section-content" data-lessonId="544">
 		<iframe width="560" height="315" src="http://www.youtube.com/embed/qvlTOhCmxvY" frameborder="0" allowfullscreen></iframe>
+		<div class="nav-container"><a href="javascript: void(0);" class="go-back-link"><span data-lessonId="544" class="go-back-btn">Go Back</span></a><a href="javascript: void(0);" class="show-quiz-link"><span data-lessonId="544" class="show-quiz-btn">Show Quiz</span></a></div>
 	</div>
 	<!-- END Diarrhea -->
 
@@ -105,6 +121,7 @@
 	</div>
 	<div id="fever-content" class="section-content" data-lessonId="537" >
 		<iframe width="560" height="315" src="http://www.youtube.com/embed/qvlTOhCmxvY" frameborder="0" allowfullscreen></iframe>
+		<div class="nav-container"><a href="javascript: void(0);" class="go-back-link"><span data-lessonId="537" class="go-back-btn">Go Back</span></a><a href="javascript: void(0);" class="show-quiz-link"><span data-lessonId="537" class="show-quiz-btn">Show Quiz</span></a></div>
 	</div>
 	<!-- END Fever -->
 
@@ -116,6 +133,7 @@
 	</div>
 	<div id="bednets-content" class="section-content" data-lessonId="538" >
 		<iframe width="560" height="315" src="http://www.youtube.com/embed/qvlTOhCmxvY" frameborder="0" allowfullscreen></iframe>
+		<div class="nav-container"><a href="javascript: void(0);" class="go-back-link"><span data-lessonId="538" class="go-back-btn">Go Back</span></a><a href="javascript: void(0);" class="show-quiz-link"><span data-lessonId="538" class="show-quiz-btn">Show Quiz</span></a></div>
 	</div>
 	<!-- END Bednets -->
 
@@ -127,6 +145,7 @@
 	</div>
 	<div id="vaccinations-content" class="section-content" data-lessonId="545" >
 		<iframe width="560" height="315" src="http://www.youtube.com/embed/qvlTOhCmxvY" frameborder="0" allowfullscreen></iframe>
+		<div class="nav-container"><a href="javascript: void(0);" class="go-back-link"><span data-lessonId="545" class="go-back-btn">Go Back</span></a><a href="javascript: void(0);" class="show-quiz-link"><span data-lessonId="545" class="show-quiz-btn">Show Quiz</span></a></div>
 	</div>
 	<!-- END Vaccinations -->
 
@@ -138,6 +157,7 @@
 	</div>
 	<div id="hygiene-sanitation-content" class="section-content" data-lessonId="546" >
 		<iframe width="560" height="315" src="http://www.youtube.com/embed/qvlTOhCmxvY" frameborder="0" allowfullscreen></iframe>
+		<div class="nav-container"><a href="javascript: void(0);" class="go-back-link"><span data-lessonId="546" class="go-back-btn">Go Back</span></a><a href="javascript: void(0);" class="show-quiz-link"><span data-lessonId="546" class="show-quiz-btn">Show Quiz</span></a></div>
 	</div>
 	<!-- END Hygine and Sanitation -->
 
@@ -149,6 +169,7 @@
 	</div>
 	<div id="nutrition-content" class="section-content" data-lessonId="547" >
 		<iframe width="560" height="315" src="http://www.youtube.com/embed/qvlTOhCmxvY" frameborder="0" allowfullscreen></iframe>
+		<div class="nav-container"><a href="javascript: void(0);" class="go-back-link"><span data-lessonId="547" class="go-back-btn">Go Back</span></a><a href="javascript: void(0);" class="show-quiz-link"><span data-lessonId="547" class="show-quiz-btn">Show Quiz</span></a></div>
 	</div>
 	<!-- END Nutrition -->
 
@@ -160,6 +181,7 @@
 	</div>
 	<div id="water-treatment-content" class="section-content" data-lessonId="548" >
 		<iframe width="560" height="315" src="http://www.youtube.com/embed/qvlTOhCmxvY" frameborder="0" allowfullscreen></iframe>
+		<div class="nav-container"><a href="javascript: void(0);" class="go-back-link"><span data-lessonId="548" class="go-back-btn">Go Back</span></a><a href="javascript: void(0);" class="show-quiz-link"><span  data-lessonId="548" class="show-quiz-btn">Show Quiz</span></a></div>
 	</div>
 	<!-- END Water Treatment -->
 
@@ -171,6 +193,7 @@
 	</div>
 	<div id="safe-food-handling-content" class="section-content" data-lessonId="552" >
 		<iframe width="560" height="315" src="http://www.youtube.com/embed/qvlTOhCmxvY" frameborder="0" allowfullscreen></iframe>
+		<div class="nav-container"><a href="javascript: void(0);" class="go-back-link"><span data-lessonId="552" class="go-back-btn">Go Back</span></a><a href="javascript: void(0);" class="show-quiz-link"><span data-lessonId="552" class="show-quiz-btn">Show Quiz</span></a></div>
 	</div>
 	<!-- END Safe Food Handling -->
 
@@ -182,6 +205,7 @@
 	</div>
 	<div id="antenatal-care-content" class="section-content" data-lessonId="550" >
 		<iframe width="560" height="315" src="http://www.youtube.com/embed/qvlTOhCmxvY" frameborder="0" allowfullscreen></iframe>
+		<div class="nav-container"><a href="javascript: void(0);" class="go-back-link"><span data-lessonId="550" class="go-back-btn">Go Back</span></a><a href="javascript: void(0);" class="show-quiz-link"><span data-lessonId="550" class="show-quiz-btn">Show Quiz</span></a></div>
 	</div>
 	<!-- END Antenatal Care -->
 
@@ -193,6 +217,7 @@
 	</div>
 	<div id="newborn-care-content" class="section-content" data-lessonId="554" >
 		<iframe width="560" height="315" src="http://www.youtube.com/embed/qvlTOhCmxvY" frameborder="0" allowfullscreen></iframe>
+		<div class="nav-container"><a href="javascript: void(0);" class="go-back-link"><span data-lessonId="554" class="go-back-btn">Go Back</span></a><a href="javascript: void(0);" class="show-quiz-link"><span data-lessonId="554" class="show-quiz-btn">Show Quiz</span></a></div>
 	</div>
 	<!-- END Newborn Care -->
 
@@ -204,6 +229,7 @@
 	</div>
 	<div id="family-planning-content" class="section-content" data-lessonId="552" >
 		<iframe width="560" height="315" src="http://www.youtube.com/embed/qvlTOhCmxvY" frameborder="0" allowfullscreen></iframe>
+		<div class="nav-container"><a href="javascript: void(0);" class="go-back-link"><span data-lessonId="552" class="go-back-btn">Go Back</span></a><a href="javascript: void(0);" class="show-quiz-link"><span data-lessonId="552" class="show-quiz-btn">Show Quiz</span></a></div>
 	</div>
 	<!-- END Family Planning -->
 </body>

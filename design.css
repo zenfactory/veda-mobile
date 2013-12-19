@@ -56,6 +56,7 @@ body
 	display: none;
 	margin-top: 10px;
 	margin-left: 8px;
+	text-align: center;
 }
 
 .section-arrow
@@ -68,6 +69,7 @@ body
 
 iframe
 {
+	text-align: center;
 }
 
 ul
@@ -113,6 +115,7 @@ li
 
 .question-response
 {
+	text-align: left;
 	display: none;
 	font-size: 70%;
 	padding-bottom: 20px;
@@ -139,6 +142,7 @@ li
 	/*text-align: center;*/
 	/*font-weight: bold;*/
 	clear: none;
+	display: none;
 }
 
 .question-hide-response
@@ -163,4 +167,26 @@ li
 .video-container
 {
 	text-align: center;
+}
+
+.go-back-btn
+{
+	padding: 0 10px 0 10px;
+	background-color: #f8892a;
+	border: 1px solid black;
+	margin: 10px 10px 10px 10px;
+}
+
+.show-quiz-btn
+{
+	padding: 0 10px 0 10px;
+	background-color: #f8892a;
+	border: 1px solid black;
+	margin: 10px 10px 10px 10px;
+}
+
+.section-question
+{
+	text-align: left;
+	display: none;
 }

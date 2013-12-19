@@ -1,5 +1,20 @@
 function toggleHover(obj)
-{ $(obj).attr("src", "images/show-response-hover.png");
+{ 
+	$(obj).attr("src", "images/show-response-hover.png");
+}
+
+function goBackBtnHandler(obj)
+{
+	// Pull lesson id
+	var lessonId = $(obj).attr("data-lessonId");
+
+	// Find the section header object and call the toggle function
+	toggleSection(($(".section-header-active[data-lessonId='"+lessonId+"']")));
+}
+
+function showQuizBtnHandler(obj)
+{
+	dbo(obj);
 }
 
 function toggleResponse(obj)
@@ -13,8 +28,6 @@ function toggleResponse(obj)
 	// Pull question object
 	quizData[lessonId][questionNumber]
 
-	
-
 	// Check the current state of the response container
 	if ($(".question-response[data-lessonId="+lessonId+"][data-questionNumber="+questionNumber+"]").css("display") == "none")
 	{
@@ -27,7 +40,6 @@ function toggleResponse(obj)
 		// Determine if the correct answer was checked by the student
 		if($("input[name=lesson-"+lessonId+"-question-"+questionNumber+"]:radio:checked").val() == quizData[lessonId][questionNumber].correctAnswer)
 		{
-
 			// Toggle correct answer icon
 			$(".answer-validity-container[data-lessonId="+lessonId+"][data-questionNumber="+questionNumber+"]").html("<img src='images/check.png' />");
 		}
@@ -64,28 +76,23 @@ function toggleSection(obj)
 	// Get current state
 	if ($(obj).attr("class") == "section-header-inactive")
 	{
+		// Remove arrow so section header looks proper
+		$("#"+sectionId+"-arrow").css("display", "none");
+
 		// Expand section content if necessary
 		$(obj).next(".section-content").css("display", "block");
 
 		// Replace section header background with active background
 		$(obj).attr("class", "section-header-active");
 
-		// Replace section header arrow with active arrow
-		$(obj).children().each(function()
-		{
-			// Check to see if this is the active / non active arrow
-			if ($(this).hasClass("section-arrow"))
-			{
-				// Replace with in-active arrow
-				$(this).attr("src", "images/active-arrow.png");
-			}
-		});
+		$(".section-header-inactive").css("display", "none");
 
-		// Bind event handlers to newly created elements
-		//bindButtonClickHandlers();
 	}
 	else
 	{
+		// Remove arrow so section header looks proper
+		$("#"+sectionId+"-arrow").css("display", "");
+
 		// Colapse section content if necessary
 		$(obj).next(".section-content").css("display", "none");
 
@@ -102,6 +109,8 @@ function toggleSection(obj)
 				$(this).attr("src", "images/inactive-arrow.png");
 			}
 		});
+
+		$(".section-header-inactive").css("display", "");
 	}
 }
 
@@ -180,8 +189,63 @@ function buildQuizQuestion(questionObj)
 	var showAnswerButton = '<div data-lessonId='+lessonId+' data-questionNumber='+questionNumber+' class="question-show-response"><img data-lessonId='+lessonId+' data-questionNumber='+questionNumber+' class="answer-validity-container" /></div>';
 
 	// Append question to content container
-	$('[class="section-content"][data-lessonId="'+lessonId+'"]').append(openContainer+answerChoices+closeContainer+responseContainer+showAnswerButton);
+	//$('[class="section-content"][data-lessonId="'+lessonId+'"]').append(openContainer+answerChoices+closeContainer+responseContainer+showAnswerButton);
 
+	// Consolidate entire quiz html
+	var quizHtml = openContainer+answerChoices+closeContainer+responseContainer+showAnswerButton;
+
+	// Return quiz html
+	return quizHtml;
+
+}
+
+function buildQuiz(quizObj)
+{
+	// Instantiate container for quiz html
+	var quizHtml = "";
+
+	// Loop through the questions
+	for (var x in quizObj)
+	{
+		// Build quiz question
+		quizHtml += buildQuizQuestion(quizObj[x]);
+
+		// Append it to DOM
+		$('[class="section-content"][data-lessonId="'+quizObj[x].lessonId+'"]').append(quizHtml);
+	}
+}
+
+function toggleQuiz(lessonId)
+{
+	// Check current display status
+	if ($("iframe").css("display") != "none")
+	{
+		// Remove iframes from display (effectively removing video lessons)
+		$("iframe").css("display", "none");	
+
+		// Display the quiz elements
+		$(".section-question").css("display", "block");	
+		$(".question-show-response").css("display", "block");	
+
+		// Change the text of the show quiz button
+		$(".show-quiz-btn").html("Show Lesson");
+	}
+	else
+	{
+		// Replace video lesson
+		$("iframe").css("display", "");	
+
+		// Set the alignment of the video container to center (may not be necessary)
+		$(".section-content").css("text-align", "center");
+
+		// Hide the quiz elements
+		$(".section-question").css("display", "none");	
+		$(".question-response").css("display", "none");	
+		$(".question-show-response").css("display", "none");	
+
+		// Change the text of the quiz button to "display quiz" from "show lesson"
+		$(".show-quiz-btn").html("Show Quiz");
+	}
 }
 
 function structureQuizData(quizData)
@@ -214,18 +278,6 @@ function structureQuizData(quizData)
 	return structuredData;
 }
 
-function buildQuiz(quizObj)
-{
-	// Instantiate a new quiz object to contain ordered questions
-	var quiz = new Object();
-	
-	// Loop through the questions
-	for (var x in quizObj)
-	{
-		// Build quiz question
-		buildQuizQuestion(quizObj[x]);
-	}
-}
 
 function buildWrongRightBox(quizObj)
 {

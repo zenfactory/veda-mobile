@@ -107,7 +107,6 @@ function buildQuizUri(contentArray)
 	// Instantiate quiz uri string
 	var quizUri = "/";
 
-
 	// Loop through the uri components and rebuild the uri
 	for (var x in contentArray)
 	{
